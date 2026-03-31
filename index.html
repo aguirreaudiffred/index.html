@@ -4,826 +4,383 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BrandTrack USA — Portal de Socios</title>
+<title>BrandTrack USA — Aguas de Lourdes</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #0a0a0f;
-    --paper: #f5f3ee;
-    --accent: #d4501a;
-    --accent2: #1a6dd4;
-    --gold: #c9a84c;
-    --muted: #8a8780;
-    --card: #ffffff;
-    --border: #e2dfd8;
-  }
-
-- { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-font-family: ‘DM Sans’, sans-serif;
-background: var(–paper);
-color: var(–ink);
-min-height: 100vh;
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d0d14;--surface:#15151f;--surface2:#1c1c2a;--border:#2a2a3a;
+  --text:#f0ede8;--text2:#8a8799;
+  --accent:#e85d26;--blue:#3b82f6;--green:#22c55e;--gold:#f59e0b;
 }
-
-/* ── SIDEBAR ── */
-.sidebar {
-position: fixed; top: 0; left: 0;
-width: 240px; height: 100vh;
-background: var(–ink);
-display: flex; flex-direction: column;
-z-index: 100;
-}
-
-.logo-area {
-padding: 28px 24px 24px;
-border-bottom: 1px solid rgba(255,255,255,.08);
-}
-
-.logo-mark {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 26px;
-letter-spacing: 3px;
-color: #fff;
-line-height: 1;
-}
-
-.logo-sub {
-font-size: 10px;
-letter-spacing: 2px;
-text-transform: uppercase;
-color: var(–muted);
-margin-top: 4px;
-}
-
-.brand-badge {
-margin: 20px 16px;
-background: rgba(212,80,26,.15);
-border: 1px solid rgba(212,80,26,.3);
-border-radius: 8px;
-padding: 12px 14px;
-}
-
-.brand-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(–muted); }
-.brand-name { font-family: ‘Bebas Neue’, sans-serif; font-size: 18px; color: var(–accent); letter-spacing: 2px; margin-top: 2px; }
-
-.nav { flex: 1; padding: 8px 0; }
-
-.nav-item {
-display: flex; align-items: center; gap: 10px;
-padding: 11px 24px;
-font-size: 13px; font-weight: 500;
-color: rgba(255,255,255,.45);
-cursor: pointer;
-transition: all .2s;
-border-left: 2px solid transparent;
-letter-spacing: .3px;
-}
-
-.nav-item:hover { color: #fff; background: rgba(255,255,255,.04); }
-.nav-item.active { color: #fff; border-left-color: var(–accent); background: rgba(212,80,26,.08); }
-.nav-icon { font-size: 15px; width: 18px; }
-
-.sidebar-footer {
-padding: 20px 24px;
-border-top: 1px solid rgba(255,255,255,.08);
-font-size: 11px; color: rgba(255,255,255,.2);
-}
-
-/* ── MAIN ── */
-.main {
-margin-left: 240px;
-min-height: 100vh;
-}
-
-.topbar {
-background: var(–card);
-border-bottom: 1px solid var(–border);
-padding: 0 36px;
-height: 64px;
-display: flex; align-items: center; justify-content: space-between;
-position: sticky; top: 0; z-index: 50;
-}
-
-.page-title {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 22px; letter-spacing: 2px;
-color: var(–ink);
-}
-
-.topbar-right { display: flex; align-items: center; gap: 16px; }
-
-.status-pill {
-display: flex; align-items: center; gap: 6px;
-background: #edfaf2; color: #1a7a4a;
-border: 1px solid #b2e8cc;
-border-radius: 20px;
-padding: 5px 12px;
-font-size: 12px; font-weight: 600;
-}
-
-.dot { width: 7px; height: 7px; border-radius: 50%; background: #2ac76a; animation: pulse 1.8s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
-
-.content { padding: 32px 36px; }
-
-/* ── KPI STRIP ── */
-.kpi-row {
-display: grid;
-grid-template-columns: repeat(4, 1fr);
-gap: 16px;
-margin-bottom: 28px;
-}
-
-.kpi-card {
-background: var(–card);
-border: 1px solid var(–border);
-border-radius: 12px;
-padding: 22px 24px;
-position: relative;
-overflow: hidden;
-transition: transform .2s, box-shadow .2s;
-}
-
-.kpi-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.07); }
-
-.kpi-card::before {
-content: ‘’;
-position: absolute; top: 0; left: 0; right: 0;
-height: 3px;
-}
-
-.kpi-card.k1::before { background: var(–accent); }
-.kpi-card.k2::before { background: var(–accent2); }
-.kpi-card.k3::before { background: var(–gold); }
-.kpi-card.k4::before { background: #2ac76a; }
-
-.kpi-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(–muted); font-weight: 500; }
-.kpi-value { font-family: ‘Bebas Neue’, sans-serif; font-size: 42px; letter-spacing: 1px; line-height: 1.1; margin: 6px 0 2px; }
-.kpi-sub { font-size: 12px; color: var(–muted); }
-.kpi-delta { font-size: 12px; font-weight: 600; color: #2ac76a; }
-
-/* ── SECTION HEADER ── */
-.section-header {
-display: flex; align-items: baseline; justify-content: space-between;
-margin-bottom: 16px;
-}
-
-.section-title {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 20px; letter-spacing: 2px;
-}
-
-.section-note { font-size: 12px; color: var(–muted); }
-
-/* ── TWO COLUMN ── */
-.two-col { display: grid; grid-template-columns: 1fr 1.4fr; gap: 20px; margin-bottom: 28px; }
-
-/* ── STATE SELECTOR ── */
-.state-panel {
-background: var(–card);
-border: 1px solid var(–border);
-border-radius: 12px;
-overflow: hidden;
-}
-
-.panel-head {
-padding: 16px 20px;
-border-bottom: 1px solid var(–border);
-display: flex; align-items: center; justify-content: space-between;
-}
-
-.panel-head-title { font-size: 13px; font-weight: 600; letter-spacing: .3px; }
-.panel-subtext { font-size: 11px; color: var(–muted); }
-
-.states-grid {
-display: grid; grid-template-columns: repeat(3, 1fr);
-gap: 1px; background: var(–border);
-max-height: 380px; overflow-y: auto;
-}
-
-.state-item {
-background: var(–card);
-padding: 12px 14px;
-cursor: pointer;
-transition: background .15s;
-display: flex; flex-direction: column; gap: 2px;
-}
-
-.state-item:hover { background: #faf8f5; }
-.state-item.selected { background: #fff5f1; }
-
-.state-name { font-size: 12px; font-weight: 600; }
-.state-count {
-font-family: ‘DM Mono’, monospace;
-font-size: 11px; color: var(–muted);
-}
-
-.state-bar-wrap { height: 3px; background: var(–border); border-radius: 2px; margin-top: 4px; }
-.state-bar { height: 3px; border-radius: 2px; background: var(–accent); transition: width .4s; }
-
-/* ── DETAIL PANEL ── */
-.detail-panel {
-background: var(–card);
-border: 1px solid var(–border);
-border-radius: 12px;
-overflow: hidden;
-display: flex; flex-direction: column;
-}
-
-.detail-state-header {
-padding: 20px 24px;
-border-bottom: 1px solid var(–border);
-background: linear-gradient(135deg, #0a0a0f 0%, #1c1c2e 100%);
-color: #fff;
-}
-
-.detail-state-name {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 32px; letter-spacing: 3px;
-line-height: 1;
-}
-
-.detail-state-sub { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 4px; }
-
-.detail-kpis {
-display: grid; grid-template-columns: repeat(2, 1fr);
-gap: 1px; background: var(–border);
-}
-
-.detail-kpi {
-background: var(–card);
-padding: 18px 20px;
-}
-
-.detail-kpi-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(–muted); font-weight: 500; }
-.detail-kpi-val {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 30px; letter-spacing: 1px;
-margin-top: 4px;
-}
-
-.detail-kpi-val.accent { color: var(–accent); }
-.detail-kpi-val.blue { color: var(–accent2); }
-.detail-kpi-val.gold { color: var(–gold); }
-.detail-kpi-val.green { color: #2ac76a; }
-
-/* ── STORES TABLE ── */
-.stores-section {
-flex: 1;
-overflow: hidden;
-}
-
-.stores-head {
-padding: 14px 20px;
-border-bottom: 1px solid var(–border);
-font-size: 11px; font-weight: 600;
-letter-spacing: 1px; text-transform: uppercase;
-color: var(–muted);
-display: grid;
-grid-template-columns: 2fr 1.2fr 1fr 1fr;
-gap: 8px;
-}
-
-.store-row {
-padding: 11px 20px;
-border-bottom: 1px solid var(–border);
-display: grid;
-grid-template-columns: 2fr 1.2fr 1fr 1fr;
-gap: 8px;
-align-items: center;
-transition: background .15s;
-font-size: 13px;
-}
-
-.store-row:hover { background: #faf8f5; }
-.store-row:last-child { border-bottom: none; }
-
-.store-name { font-weight: 500; }
-
-.badge {
-display: inline-flex; align-items: center; justify-content: center;
-padding: 3px 8px;
-border-radius: 4px;
-font-size: 10px; font-weight: 700;
-letter-spacing: .5px; text-transform: uppercase;
-}
-
-.badge-active { background: #edfaf2; color: #1a7a4a; }
-.badge-prospect { background: #fff8e6; color: #7a5a1a; }
-.badge-inactive { background: #f5f5f5; color: #888; }
-
-.visit-freq { font-family: ‘DM Mono’, monospace; font-size: 12px; color: var(–muted); }
-.inv-amt { font-family: ‘DM Mono’, monospace; font-size: 12px; color: var(–accent2); font-weight: 500; }
-
-/* ── INVESTMENT BAR ── */
-.investment-section {
-background: var(–card);
-border: 1px solid var(–border);
-border-radius: 12px;
-overflow: hidden;
-margin-bottom: 28px;
-}
-
-.inv-row {
-padding: 14px 20px;
-display: flex; align-items: center; gap: 16px;
-border-bottom: 1px solid var(–border);
-transition: background .15s;
-}
-
-.inv-row:hover { background: #faf8f5; }
-.inv-row:last-child { border-bottom: none; }
-
-.inv-state { font-size: 13px; font-weight: 600; width: 130px; flex-shrink: 0; }
-.inv-bar-wrap { flex: 1; height: 8px; background: var(–border); border-radius: 4px; overflow: hidden; }
-.inv-bar { height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(–accent2), var(–accent)); transition: width .8s ease; }
-.inv-val { font-family: ‘DM Mono’, monospace; font-size: 12px; color: var(–accent2); font-weight: 500; width: 80px; text-align: right; flex-shrink: 0; }
-.inv-stores { font-size: 11px; color: var(–muted); width: 70px; text-align: right; flex-shrink: 0; }
-
-/* ── ACTIVITY FEED ── */
-.activity-panel {
-background: var(–card);
-border: 1px solid var(–border);
-border-radius: 12px;
-overflow: hidden;
-}
-
-.activity-item {
-padding: 13px 20px;
-border-bottom: 1px solid var(–border);
-display: flex; align-items: flex-start; gap: 12px;
-}
-
-.activity-item:last-child { border-bottom: none; }
-
-.activity-dot {
-width: 8px; height: 8px; border-radius: 50%;
-margin-top: 5px; flex-shrink: 0;
-}
-
-.activity-text { font-size: 13px; line-height: 1.5; }
-.activity-time { font-size: 11px; color: var(–muted); margin-top: 2px; font-family: ‘DM Mono’, monospace; }
-.activity-store { font-weight: 600; }
-
-/* ── TABS ── */
-.tabs { display: flex; gap: 2px; margin-bottom: 20px; }
-.tab {
-padding: 8px 18px;
-font-size: 13px; font-weight: 500;
-border-radius: 6px;
-cursor: pointer;
-color: var(–muted);
-transition: all .2s;
-}
-.tab:hover { background: var(–border); color: var(–ink); }
-.tab.active { background: var(–ink); color: #fff; }
-
-/* ── VIEWS ── */
-.view { display: none; }
-.view.active { display: block; }
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(–border); border-radius: 2px; }
-
-/* ── TOOLTIP ── */
-.tooltip-overlay {
-display: none;
-position: fixed; inset: 0;
-background: rgba(0,0,0,.3);
-z-index: 200;
-align-items: center; justify-content: center;
-}
-.tooltip-overlay.open { display: flex; }
-
-.modal {
-background: var(–card);
-border-radius: 16px;
-width: 520px;
-overflow: hidden;
-box-shadow: 0 32px 80px rgba(0,0,0,.25);
-}
-
-.modal-head {
-background: var(–ink);
-padding: 24px 28px;
-color: #fff;
-}
-
-.modal-title { font-family: ‘Bebas Neue’, sans-serif; font-size: 28px; letter-spacing: 2px; }
-.modal-sub { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 4px; }
-
-.modal-body { padding: 24px 28px; }
-
-.modal-kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
-.modal-kpi { background: var(–paper); border-radius: 8px; padding: 14px 16px; }
-.modal-kpi-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(–muted); }
-.modal-kpi-val { font-family: ‘Bebas Neue’, sans-serif; font-size: 28px; letter-spacing: 1px; margin-top: 4px; }
-
-.modal-close {
-width: 100%; padding: 14px;
-background: var(–ink); color: #fff;
-border: none; font-family: ‘Bebas Neue’, sans-serif;
-font-size: 16px; letter-spacing: 2px;
-cursor: pointer;
-transition: background .2s;
-}
-.modal-close:hover { background: var(–accent); }
-
-/* empty state */
-.empty-state {
-padding: 48px 24px;
-text-align: center;
-color: var(–muted);
-font-size: 13px;
-}
-.empty-icon { font-size: 36px; margin-bottom: 12px; }
-
-@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-.kpi-card, .state-panel, .detail-panel, .investment-section, .activity-panel {
-animation: fadeIn .4s ease both;
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+.app{display:flex;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{width:260px;flex-shrink:0;background:var(–surface);border-right:1px solid var(–border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.logo-wrap{padding:28px 24px 20px}
+.logo-txt{font-family:‘Bebas Neue’,sans-serif;font-size:24px;letter-spacing:4px;color:#fff;line-height:1}
+.logo-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(–text2);margin-top:4px}
+.brand-box{margin:0 16px 24px;background:linear-gradient(135deg,rgba(232,93,38,.18),rgba(232,93,38,.06));border:1px solid rgba(232,93,38,.35);border-radius:10px;padding:14px 16px}
+.bb-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(–accent);font-weight:600}
+.bb-name{font-family:‘Bebas Neue’,sans-serif;font-size:22px;letter-spacing:2px;color:#fff;margin-top:3px;line-height:1.1}
+.bb-sub{font-size:11px;color:var(–text2);margin-top:4px}
+.nav-sec{padding:0 8px;flex:1}
+.nav-grp-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(–text2);padding:0 12px;margin:16px 0 6px}
+.nbtn{display:flex;align-items:center;gap:10px;width:100%;padding:11px 14px;background:none;border:none;color:var(–text2);font-family:‘DM Sans’,sans-serif;font-size:13px;font-weight:500;border-radius:8px;cursor:pointer;text-align:left;transition:all .18s;letter-spacing:.2px}
+.nbtn:hover{background:rgba(255,255,255,.05);color:var(–text)}
+.nbtn.active{background:rgba(232,93,38,.14);color:var(–accent)}
+.nbtn-icon{font-size:14px;width:20px;text-align:center}
+.sfooter{padding:20px 24px;border-top:1px solid var(–border);font-size:11px;color:var(–text2)}
+.ldot{display:inline-block;width:6px;height:6px;background:var(–green);border-radius:50%;margin-right:5px;animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* MAIN */
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+.topbar{background:var(–surface);border-bottom:1px solid var(–border);padding:0 32px;height:62px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.tb-title{font-family:‘Bebas Neue’,sans-serif;font-size:20px;letter-spacing:3px;color:var(–text)}
+.tb-right{display:flex;align-items:center;gap:12px}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:20px;font-size:11px;font-weight:600}
+.pill-g{background:rgba(34,197,94,.1);color:var(–green);border:1px solid rgba(34,197,94,.2)}
+.pill-d{background:rgba(255,255,255,.04);color:var(–text2);border:1px solid var(–border);font-family:‘DM Mono’,monospace;font-size:10px}
+.content{padding:28px 32px;flex:1}
+
+/* VIEWS */
+.view{display:none}
+.view.active{display:block;animation:fadeUp .3s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* KPI CARDS */
+.krow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+.krow3{grid-template-columns:repeat(3,1fr)}
+.kcard{background:var(–surface);border:1px solid var(–border);border-radius:12px;padding:22px 20px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.kcard:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.kcard::after{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:var(–cc,var(–accent))}
+.kcard.co{–cc:var(–accent)}.kcard.cb{–cc:var(–blue)}.kcard.cg{–cc:var(–gold)}.kcard.cn{–cc:var(–green)}
+.klabel{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(–text2);font-weight:500}
+.kval{font-family:‘Bebas Neue’,sans-serif;font-size:44px;letter-spacing:1px;line-height:1.05;margin:6px 0 2px}
+.kval.co{color:var(–accent)}.kval.cb{color:var(–blue)}.kval.cg{color:var(–gold)}.kval.cn{color:var(–green)}
+.ksub{font-size:12px;color:var(–text2)}.kup{color:var(–green);font-weight:600}
+
+/* SECTION HEADER */
+.sh{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px}
+.st{font-family:‘Bebas Neue’,sans-serif;font-size:20px;letter-spacing:2px;color:var(–text)}
+.ss{font-size:12px;color:var(–text2)}
+
+/* TWO COL */
+.twocol{display:grid;grid-template-columns:1fr 1.5fr;gap:20px;margin-bottom:28px}
+
+/* PANEL */
+.panel{background:var(–surface);border:1px solid var(–border);border-radius:12px;overflow:hidden}
+.ph{padding:15px 20px;border-bottom:1px solid var(–border);display:flex;align-items:center;justify-content:space-between}
+.ph-t{font-size:13px;font-weight:600;color:var(–text)}.ph-s{font-size:11px;color:var(–text2);font-family:‘DM Mono’,monospace}
+
+/* STATES LIST */
+.sscroll{max-height:420px;overflow-y:auto}
+.sscroll::-webkit-scrollbar{width:3px}
+.sscroll::-webkit-scrollbar-thumb{background:var(–border);border-radius:2px}
+.srow{padding:12px 20px;border-bottom:1px solid var(–border);cursor:pointer;transition:background .15s;display:flex;flex-direction:column;gap:3px}
+.srow:last-child{border-bottom:none}
+.srow:hover{background:rgba(255,255,255,.03)}
+.srow.sel{background:rgba(232,93,38,.1);border-left:3px solid var(–accent)}
+.srow-top{display:flex;align-items:center;justify-content:space-between}
+.srow-name{font-size:13px;font-weight:600;color:var(–text)}
+.srow-cnt{font-size:11px;color:var(–accent);font-family:‘DM Mono’,monospace}
+.srow-inv{font-size:11px;color:var(–text2);font-family:‘DM Mono’,monospace}
+.barbg{height:3px;background:var(–border);border-radius:2px;margin-top:4px}
+.barfill{height:3px;border-radius:2px;background:linear-gradient(90deg,var(–accent),var(–gold));transition:width .5s ease}
+
+/* DETAIL */
+.de{padding:60px 24px;text-align:center;color:var(–text2)}
+.de-icon{font-size:40px;margin-bottom:12px}
+.de-txt{font-size:13px;line-height:1.6}
+.dh{padding:22px 24px;background:linear-gradient(135deg,#1a0802,#0d0d14);border-bottom:1px solid var(–border)}
+.dh-name{font-family:‘Bebas Neue’,sans-serif;font-size:36px;letter-spacing:3px;color:#fff;line-height:1}
+.dh-tag{font-size:11px;color:rgba(255,255,255,.35);margin-top:4px;letter-spacing:1px}
+.dmetrics{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(–border)}
+.dm{background:var(–surface);padding:16px 20px}
+.dml{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(–text2);font-weight:500}
+.dmv{font-family:‘Bebas Neue’,sans-serif;font-size:28px;letter-spacing:1px;margin-top:4px}
+.sthead{display:grid;grid-template-columns:1.8fr 1fr .9fr .9fr;gap:8px;padding:10px 20px;background:rgba(0,0,0,.25);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(–text2);font-weight:600}
+.strow{display:grid;grid-template-columns:1.8fr 1fr .9fr .9fr;gap:8px;padding:11px 20px;border-top:1px solid var(–border);align-items:center;transition:background .12s}
+.strow:hover{background:rgba(255,255,255,.03)}
+.stn{font-size:12px;font-weight:500;color:var(–text)}
+.badge{display:inline-flex;align-items:center;justify-content:center;padding:3px 8px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.ba{background:rgba(34,197,94,.12);color:var(–green);border:1px solid rgba(34,197,94,.2)}
+.bp{background:rgba(245,158,11,.12);color:var(–gold);border:1px solid rgba(245,158,11,.2)}
+.bi{background:rgba(255,255,255,.05);color:var(–text2);border:1px solid var(–border)}
+.stf{font-size:11px;color:var(–text2);font-family:‘DM Mono’,monospace}
+.sti{font-size:11px;color:var(–blue);font-family:‘DM Mono’,monospace;font-weight:500}
+
+/* INVESTMENT */
+.irow{display:flex;align-items:center;gap:16px;padding:13px 20px;border-bottom:1px solid var(–border);transition:background .12s}
+.irow:hover{background:rgba(255,255,255,.02)}
+.irow:last-child{border-bottom:none}
+.istate{font-size:13px;font-weight:600;color:var(–text);width:120px;flex-shrink:0}
+.ibarbg{flex:1;height:7px;background:var(–border);border-radius:4px;overflow:hidden}
+.ibarfill{height:7px;border-radius:4px;background:linear-gradient(90deg,var(–blue),var(–accent));transition:width .9s ease}
+.idollar{font-family:‘DM Mono’,monospace;font-size:12px;color:var(–blue);font-weight:500;width:75px;text-align:right;flex-shrink:0}
+.icnt{font-size:11px;color:var(–text2);width:65px;text-align:right;flex-shrink:0}
+
+/* ACTIVITY */
+.aitem{padding:14px 20px;border-bottom:1px solid var(–border);display:flex;gap:12px;align-items:flex-start}
+.aitem:last-child{border-bottom:none}
+.adot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.atxt{font-size:13px;line-height:1.55;color:var(–text)}
+.astore{font-weight:600;color:#fff}
+.atime{font-size:10px;color:var(–text2);font-family:‘DM Mono’,monospace;margin-top:3px}
+
+/* ORDERS */
+.ohead{display:grid;grid-template-columns:1fr 1.5fr .6fr .6fr .7fr;gap:8px;padding:10px 20px;background:rgba(0,0,0,.25);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(–text2);font-weight:600}
+.orow{display:grid;grid-template-columns:1fr 1.5fr .6fr .6fr .7fr;gap:8px;padding:12px 20px;border-top:1px solid var(–border);align-items:center;transition:background .12s}
+.orow:hover{background:rgba(255,255,255,.03)}
+.ostate{font-size:12px;color:var(–text2)}
+.ostore{font-size:12px;font-weight:500;color:var(–text)}
+.oqty{font-family:‘DM Mono’,monospace;font-size:12px;color:var(–text2)}
+.osku{font-size:11px;color:var(–text2)}
+.oamt{font-family:‘DM Mono’,monospace;font-size:12px;color:var(–green);font-weight:500}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+.sidebar{width:100%;height:auto;position:static;flex-direction:column;border-right:none;border-bottom:1px solid var(–border)}
+.app{flex-direction:column}
+.nav-sec{display:flex;flex-wrap:wrap;gap:4px;padding:8px}
+.nav-grp-label{display:none}
+.nbtn{width:auto;padding:8px 14px;font-size:12px;flex-shrink:0}
+.sfooter{display:none}
+.krow{grid-template-columns:repeat(2,1fr)}
+.krow3{grid-template-columns:repeat(2,1fr)}
+.kval{font-size:32px}
+.twocol{grid-template-columns:1fr}
+.content{padding:16px}
+.topbar{padding:0 16px;height:52px}
 }
 </style>
 
 </head>
 <body>
-
-<!-- SIDEBAR -->
+<div class="app">
 
 <aside class="sidebar">
-  <div class="logo-area">
-    <div class="logo-mark">BrandTrack</div>
+  <div class="logo-wrap">
+    <div class="logo-txt">BrandTrack</div>
     <div class="logo-sub">USA Distribution Portal</div>
   </div>
-  <div class="brand-badge">
-    <div class="brand-label">Marca activa</div>
-    <div class="brand-name">Aguas de Lourdes</div>
+  <div class="brand-box">
+    <div class="bb-label">Marca activa</div>
+    <div class="bb-name">Aguas de Lourdes</div>
+    <div class="bb-sub">Portal exclusivo · Q1 2025</div>
   </div>
-  <nav class="nav">
-    <div class="nav-item active" onclick="switchTab('overview')">
-      <span class="nav-icon">◈</span> Resumen General
-    </div>
-    <div class="nav-item" onclick="switchTab('states')">
-      <span class="nav-icon">◎</span> Estados & Cobertura
-    </div>
-    <div class="nav-item" onclick="switchTab('investment')">
-      <span class="nav-icon">◉</span> Inversión por Zona
-    </div>
-    <div class="nav-item" onclick="switchTab('activity')">
-      <span class="nav-icon">◐</span> Actividad Reciente
-    </div>
-  </nav>
-  <div class="sidebar-footer">Portal exclusivo de marca · Q1 2025</div>
+  <div class="nav-sec">
+    <div class="nav-grp-label">Navegación</div>
+    <button class="nbtn active" onclick="goTo('overview',this)"><span class="nbtn-icon">▣</span>Resumen General</button>
+    <button class="nbtn" onclick="goTo('states',this)"><span class="nbtn-icon">◎</span>Estados &amp; Cobertura</button>
+    <button class="nbtn" onclick="goTo('investment',this)"><span class="nbtn-icon">◈</span>Inversión por Zona</button>
+    <button class="nbtn" onclick="goTo('activity',this)"><span class="nbtn-icon">◐</span>Actividad Reciente</button>
+  </div>
+  <div class="sfooter"><span class="ldot"></span>Sistema activo · 31 Mar 2025</div>
 </aside>
 
-<!-- MAIN -->
-
-<main class="main">
+<div class="main">
   <div class="topbar">
-    <div class="page-title" id="topbar-title">RESUMEN GENERAL</div>
-    <div class="topbar-right">
-      <div class="status-pill"><div class="dot"></div> En vivo</div>
-      <div style="font-size:12px;color:var(--muted)">Última actualización: hoy</div>
+    <div class="tb-title" id="ptitle">RESUMEN GENERAL</div>
+    <div class="tb-right">
+      <div class="pill pill-g"><span class="ldot"></span>En vivo</div>
+      <div class="pill pill-d">Mar 31, 2025</div>
     </div>
   </div>
-
   <div class="content">
 
 ```
-<!-- ─── VIEW: OVERVIEW ─── -->
-<div class="view active" id="view-overview">
-  <div class="kpi-row">
-    <div class="kpi-card k1">
-      <div class="kpi-label">Estados activos</div>
-      <div class="kpi-value">12</div>
-      <div class="kpi-sub">de 50 disponibles en EU</div>
-    </div>
-    <div class="kpi-card k2">
-      <div class="kpi-label">Puntos de venta</div>
-      <div class="kpi-value">87</div>
-      <div class="kpi-sub"><span class="kpi-delta">▲ +14</span> últimos 30 días</div>
-    </div>
-    <div class="kpi-card k3">
-      <div class="kpi-label">Inversión total</div>
-      <div class="kpi-value">$17.4K</div>
-      <div class="kpi-sub">en merchandising activo</div>
-    </div>
-    <div class="kpi-card k4">
-      <div class="kpi-label">Visitas este mes</div>
-      <div class="kpi-value">312</div>
-      <div class="kpi-sub"><span class="kpi-delta">▲ 91%</span> cobertura semanal</div>
-    </div>
+<!-- OVERVIEW -->
+<div class="view active" id="v-overview">
+  <div class="krow">
+    <div class="kcard co"><div class="klabel">Estados activos</div><div class="kval co">12</div><div class="ksub">de 50 disponibles en EU</div></div>
+    <div class="kcard cb"><div class="klabel">Puntos de venta</div><div class="kval cb">87</div><div class="ksub"><span class="kup">▲ +14</span> últimos 30 días</div></div>
+    <div class="kcard cg"><div class="klabel">Inversión total</div><div class="kval cg">$17.4K</div><div class="ksub">en merchandising activo</div></div>
+    <div class="kcard cn"><div class="klabel">Visitas este mes</div><div class="kval cn">312</div><div class="ksub"><span class="kup">91%</span> cobertura semanal</div></div>
   </div>
-
-  <div class="section-header">
-    <div class="section-title">Cobertura por estado</div>
-    <div class="section-note">Selecciona un estado para ver el detalle</div>
-  </div>
-
-  <div class="two-col">
-    <!-- State list -->
-    <div class="state-panel">
-      <div class="panel-head">
-        <div class="panel-head-title">Estados con presencia activa</div>
-        <div class="panel-subtext">12 estados</div>
-      </div>
-      <div class="states-grid" id="states-grid"></div>
+  <div class="sh"><div class="st">Cobertura por Estado</div><div class="ss">Haz clic en un estado para ver el desglose</div></div>
+  <div class="twocol">
+    <div class="panel">
+      <div class="ph"><div class="ph-t">Estados con presencia activa</div><div class="ph-s">12 estados</div></div>
+      <div class="sscroll" id="slist-ov"></div>
     </div>
-
-    <!-- Detail -->
-    <div class="detail-panel" id="detail-panel">
-      <div class="empty-state">
-        <div class="empty-icon">📍</div>
-        Selecciona un estado para ver el desglose completo de tiendas, inversión y frecuencia de visita.
-      </div>
+    <div class="panel" id="dp-ov">
+      <div class="de"><div class="de-icon">📍</div><div class="de-txt">Selecciona un estado para ver el desglose completo de tiendas, inversión y frecuencia de visita.</div></div>
     </div>
   </div>
 </div>
 
-<!-- ─── VIEW: STATES ─── -->
-<div class="view" id="view-states">
-  <div class="section-header">
-    <div class="section-title">Todos los estados — cobertura activa</div>
-    <div class="section-note">12 de 50 estados con presencia</div>
+<!-- STATES -->
+<div class="view" id="v-states">
+  <div class="krow krow3" style="margin-bottom:24px">
+    <div class="kcard co"><div class="klabel">Estado líder en tiendas</div><div class="kval" style="font-size:28px;color:var(--accent)">California</div><div class="ksub">19 puntos de venta activos</div></div>
+    <div class="kcard cg"><div class="klabel">Mayor inversión</div><div class="kval" style="font-size:28px;color:var(--gold)">California</div><div class="ksub">$3,800 en zona activa</div></div>
+    <div class="kcard cn"><div class="klabel">Mejor frecuencia</div><div class="kval" style="font-size:28px;color:var(--green)">TX · CA · FL</div><div class="ksub">Visitas 3x por semana</div></div>
   </div>
-  <div class="kpi-row" style="grid-template-columns:repeat(3,1fr)">
-    <div class="kpi-card k1">
-      <div class="kpi-label">Estado líder en tiendas</div>
-      <div class="kpi-value" style="font-size:28px">Texas</div>
-      <div class="kpi-sub">18 puntos de venta activos</div>
-    </div>
-    <div class="kpi-card k2">
-      <div class="kpi-label">Mayor inversión</div>
-      <div class="kpi-value" style="font-size:28px">California</div>
-      <div class="kpi-sub">$3,800 en zona activa</div>
-    </div>
-    <div class="kpi-card k3">
-      <div class="kpi-label">Mejor frecuencia</div>
-      <div class="kpi-value" style="font-size:28px">Florida</div>
-      <div class="kpi-sub">Visitas 3x por semana</div>
-    </div>
+  <div class="sh"><div class="st">Selecciona un estado</div></div>
+  <div class="panel" style="margin-bottom:20px">
+    <div class="ph"><div class="ph-t">Todos los estados activos</div><div class="ph-s">12 / 50 cubiertos</div></div>
+    <div id="slist-st"></div>
   </div>
-  <div class="section-header" style="margin-top:8px">
-    <div class="section-title">Selecciona un estado</div>
-  </div>
-  <div class="state-panel" style="max-width:100%">
-    <div class="states-grid" id="states-grid-2" style="grid-template-columns:repeat(4,1fr)"></div>
+  <div class="panel" id="dp-st">
+    <div class="de"><div class="de-icon">👆</div><div class="de-txt">Selecciona un estado arriba para ver el detalle.</div></div>
   </div>
 </div>
 
-<!-- ─── VIEW: INVESTMENT ─── -->
-<div class="view" id="view-investment">
-  <div class="kpi-row">
-    <div class="kpi-card k3">
-      <div class="kpi-label">Inversión total</div>
-      <div class="kpi-value">$17,400</div>
-      <div class="kpi-sub">en 12 estados activos</div>
-    </div>
-    <div class="kpi-card k2">
-      <div class="kpi-label">Costo por tienda</div>
-      <div class="kpi-value">$200</div>
-      <div class="kpi-sub">promedio por punto de venta</div>
-    </div>
-    <div class="kpi-card k1">
-      <div class="kpi-label">ROI estimado</div>
-      <div class="kpi-value">3.2x</div>
-      <div class="kpi-sub">retorno sobre inversión</div>
-    </div>
-    <div class="kpi-card k4">
-      <div class="kpi-label">Pedidos levantados</div>
-      <div class="kpi-value">248</div>
-      <div class="kpi-sub">último trimestre</div>
-    </div>
+<!-- INVESTMENT -->
+<div class="view" id="v-investment">
+  <div class="krow">
+    <div class="kcard cg"><div class="klabel">Inversión total</div><div class="kval cg">$17,400</div><div class="ksub">12 estados activos</div></div>
+    <div class="kcard cb"><div class="klabel">Costo por tienda</div><div class="kval cb">~$200</div><div class="ksub">por punto de venta activo</div></div>
+    <div class="kcard co"><div class="klabel">ROI estimado</div><div class="kval co">3.2x</div><div class="ksub">retorno sobre inversión</div></div>
+    <div class="kcard cn"><div class="klabel">Pedidos levantados</div><div class="kval cn">248</div><div class="ksub">último trimestre</div></div>
   </div>
-
-  <div class="section-header">
-    <div class="section-title">Inversión por estado</div>
-    <div class="section-note">$200 base por cada tienda activa + gastos de activación</div>
-  </div>
-
-  <div class="investment-section" id="inv-table"></div>
+  <div class="sh"><div class="st">Inversión por Estado</div><div class="ss">$200 base por tienda + gastos de activación</div></div>
+  <div class="panel" id="inv-tbl"></div>
 </div>
 
-<!-- ─── VIEW: ACTIVITY ─── -->
-<div class="view" id="view-activity">
-  <div class="section-header">
-    <div class="section-title">Actividad reciente del equipo</div>
-    <div class="section-note">Visitas, pedidos y novedades de tu producto</div>
-  </div>
-  <div class="two-col">
-    <div class="activity-panel" id="activity-feed"></div>
+<!-- ACTIVITY -->
+<div class="view" id="v-activity">
+  <div class="sh"><div class="st">Actividad Reciente del Equipo</div><div class="ss">Visitas, pedidos y seguimientos en campo</div></div>
+  <div class="twocol">
     <div>
-      <div class="section-header"><div class="section-title">Pedidos levantados</div></div>
-      <div class="investment-section" id="orders-table"></div>
+      <div class="sh"><div class="st" style="font-size:15px">Feed de actividad</div></div>
+      <div class="panel" id="act-feed"></div>
+    </div>
+    <div>
+      <div class="sh"><div class="st" style="font-size:15px">Pedidos levantados</div></div>
+      <div class="panel">
+        <div class="ohead"><span>Estado</span><span>Tienda</span><span>Cajas</span><span>SKU</span><span>Monto</span></div>
+        <div id="orders-bd"></div>
+      </div>
     </div>
   </div>
 </div>
 ```
 
-  </div><!-- /content -->
-</main>
-
-<!-- MODAL -->
-
-<div class="tooltip-overlay" id="modal-overlay" onclick="closeModal(event)">
-  <div class="modal" id="modal-box">
-    <div class="modal-head">
-      <div class="modal-title" id="modal-title">Texas</div>
-      <div class="modal-sub" id="modal-sub">Detalle de cobertura</div>
-    </div>
-    <div class="modal-body">
-      <div class="modal-kpis" id="modal-kpis"></div>
-    </div>
-    <button class="modal-close" onclick="closeModal()">CERRAR</button>
   </div>
+</div>
 </div>
 
 <script>
-// ── DATA ──
-const statesData = [
-  { name: 'Texas',        code:'TX', stores:18, inv:3600, visits:3, orders:42, freq:'3x/sem' },
-  { name: 'California',   code:'CA', stores:19, inv:3800, visits:3, orders:45, freq:'3x/sem' },
-  { name: 'Florida',      code:'FL', stores:14, inv:2800, visits:3, orders:34, freq:'3x/sem' },
-  { name: 'Illinois',     code:'IL', stores:10, inv:2000, visits:2, orders:24, freq:'2x/sem' },
-  { name: 'Arizona',      code:'AZ', stores:8,  inv:1600, visits:2, orders:19, freq:'2x/sem' },
-  { name: 'New Mexico',   code:'NM', stores:6,  inv:1200, visits:1, orders:14, freq:'1x/sem' },
-  { name: 'Nevada',       code:'NV', stores:5,  inv:1000, visits:1, orders:11, freq:'1x/sem' },
-  { name: 'Colorado',     code:'CO', stores:4,  inv:800,  visits:1, orders:9,  freq:'1x/sem' },
-  { name: 'Georgia',      code:'GA', stores:5,  inv:1000, visits:1, orders:12, freq:'1x/sem' },
-  { name: 'New York',     code:'NY', stores:6,  inv:1200, visits:2, orders:15, freq:'2x/sem' },
-  { name: 'Washington',   code:'WA', stores:3,  inv:600,  visits:1, orders:7,  freq:'1x/sem' },
-  { name: 'Oregon',       code:'OR', stores:2,  inv:400,  visits:1, orders:5,  freq:'1x/sem' },
+var STATES=[
+  {name:'Texas',code:'TX',stores:18,inv:3600,visits:'3x/sem',orders:42},
+  {name:'California',code:'CA',stores:19,inv:3800,visits:'3x/sem',orders:45},
+  {name:'Florida',code:'FL',stores:14,inv:2800,visits:'3x/sem',orders:34},
+  {name:'Illinois',code:'IL',stores:10,inv:2000,visits:'2x/sem',orders:24},
+  {name:'Arizona',code:'AZ',stores:8,inv:1600,visits:'2x/sem',orders:19},
+  {name:'New Mexico',code:'NM',stores:6,inv:1200,visits:'1x/sem',orders:14},
+  {name:'Nevada',code:'NV',stores:5,inv:1000,visits:'1x/sem',orders:11},
+  {name:'Colorado',code:'CO',stores:4,inv:800,visits:'1x/sem',orders:9},
+  {name:'Georgia',code:'GA',stores:5,inv:1000,visits:'1x/sem',orders:12},
+  {name:'New York',code:'NY',stores:6,inv:1200,visits:'2x/sem',orders:15},
+  {name:'Washington',code:'WA',stores:3,inv:600,visits:'1x/sem',orders:7},
+  {name:'Oregon',code:'OR',stores:2,inv:400,visits:'1x/sem',orders:5}
+];
+var SNAMES=['Fiesta Mart','La Michoacana Market','El Rancho Supermercado','Supermercados Jalisco','Cardenas Market','Superior Grocers','Mi Tienda del Sol','El Super','Northgate Market','Vallarta Supermarkets'];
+var SSTATUS=['active','active','active','active','active','prospect','active','active','prospect','inactive'];
+var ACTIVITY=[
+  {c:'#22c55e',t:'<span class="astore">Fiesta Mart #7 — Houston TX</span> — Pedido levantado: 48 cajas Aguas de Lourdes 500ml.',tm:'Hoy, 9:14am'},
+  {c:'#3b82f6',t:'<span class="astore">Cardenas Market — Los Angeles CA</span> — Visita de seguimiento. Anaquel actualizado, material POP colocado.',tm:'Hoy, 8:30am'},
+  {c:'#f59e0b',t:'<span class="astore">El Super — Phoenix AZ</span> — Negociación de espacio secundario. En proceso de aprobación.',tm:'Ayer, 4:55pm'},
+  {c:'#22c55e',t:'<span class="astore">Vallarta Supermarkets — San Diego CA</span> — Pedido levantado: 36 cajas 1L.',tm:'Ayer, 2:10pm'},
+  {c:'#e85d26',t:'<span class="astore">Mi Tienda del Sol — Dallas TX</span> — Primer contacto. Interesados en producto. Muestra entregada.',tm:'Ayer, 11:00am'},
+  {c:'#22c55e',t:'<span class="astore">Northgate Market — Miami FL</span> — Pedido levantado: 60 cajas surtido.',tm:'Lun, 3:20pm'},
+  {c:'#3b82f6',t:'<span class="astore">La Michoacana Market — Chicago IL</span> — Visita semanal completada. Stock verificado.',tm:'Lun, 1:45pm'},
+  {c:'#22c55e',t:'<span class="astore">Superior Grocers — Las Vegas NV</span> — Pedido levantado: 24 cajas.',tm:'Lun, 10:05am'}
+];
+var ORDERS=[
+  {state:'Texas',store:'Fiesta Mart #7',qty:48,sku:'500ml',amt:'$576'},
+  {state:'California',store:'Vallarta Supermarkets',qty:36,sku:'1L',amt:'$504'},
+  {state:'Florida',store:'Northgate Market',qty:60,sku:'Surtido',amt:'$660'},
+  {state:'Nevada',store:'Superior Grocers',qty:24,sku:'500ml',amt:'$288'},
+  {state:'Illinois',store:'La Michoacana Market',qty:30,sku:'1L',amt:'$420'},
+  {state:'Arizona',store:'El Super #3',qty:18,sku:'500ml',amt:'$216'}
 ];
 
-const storeNames = [
-  'Fiesta Mart','La Michoacana Market','El Rancho Supermercado',
-  'Supermercados Jalisco','Cardenas Market','Superior Grocers',
-  'Mi Tienda del Sol','El Super','Northgate Market','Vallarta Supermarkets'
-];
+var MS=Math.max.apply(null,STATES.map(function(s){return s.stores}));
+var MI=Math.max.apply(null,STATES.map(function(s){return s.inv}));
+function pct(v,m){return Math.round(v/m*100)}
 
-const activityData = [
-  { color:'#2ac76a', text:'<span class="activity-store">Fiesta Mart #7 — Houston TX</span> — Pedido levantado: 48 cajas Aguas de Lourdes 500ml.', time:'Hoy, 9:14am' },
-  { color:'var(--accent2)', text:'<span class="activity-store">Cardenas Market — Los Angeles CA</span> — Visita de seguimiento. Anaquel actualizado, material POP colocado.', time:'Hoy, 8:30am' },
-  { color:'var(--gold)', text:'<span class="activity-store">El Super — Phoenix AZ</span> — Negociación de espacio secundario. En proceso de aprobación.', time:'Ayer, 4:55pm' },
-  { color:'#2ac76a', text:'<span class="activity-store">Vallarta Supermarkets — San Diego CA</span> — Pedido levantado: 36 cajas 1L.', time:'Ayer, 2:10pm' },
-  { color:'var(--accent)', text:'<span class="activity-store">Mi Tienda del Sol — Dallas TX</span> — Primer contacto. Interesados en producto. Muestra entregada.', time:'Ayer, 11:00am' },
-  { color:'#2ac76a', text:'<span class="activity-store">Northgate Market — Miami FL</span> — Pedido levantado: 60 cajas surtido.', time:'Lun, 3:20pm' },
-  { color:'var(--accent2)', text:'<span class="activity-store">La Michoacana Market — Chicago IL</span> — Visita semanal completada. Stock verificado.', time:'Lun, 1:45pm' },
-  { color:'#2ac76a', text:'<span class="activity-store">Superior Grocers — Las Vegas NV</span> — Pedido levantado: 24 cajas.', time:'Lun, 10:05am' },
-];
-
-const ordersData = [
-  { state:'Texas',      store:'Fiesta Mart #7',        qty:48, sku:'500ml',  amt:'$576' },
-  { state:'California', store:'Vallarta Supermarkets', qty:36, sku:'1L',     amt:'$504' },
-  { state:'Florida',    store:'Northgate Market',      qty:60, sku:'Surtido', amt:'$660' },
-  { state:'Nevada',     store:'Superior Grocers',      qty:24, sku:'500ml',  amt:'$288' },
-  { state:'Illinois',   store:'La Michoacana Market',  qty:30, sku:'1L',     amt:'$420' },
-  { state:'Arizona',    store:'El Super #3',           qty:18, sku:'500ml',  amt:'$216' },
-];
-
-// ── BUILD STATES GRIDS ──
-function buildStateGrid(container, cols) {
-  const max = Math.max(...statesData.map(s=>s.stores));
-  container.innerHTML = statesData.map((s,i) => `
-    <div class="state-item" id="sitem-${i}" onclick="selectState(${i})">
-      <div class="state-name">${s.name}</div>
-      <div class="state-count">${s.stores} tiendas · $${s.inv.toLocaleString()}</div>
-      <div class="state-bar-wrap">
-        <div class="state-bar" style="width:${Math.round(s.stores/max*100)}%"></div>
-      </div>
-    </div>
-  `).join('');
+function badgeHtml(st){
+  if(st==='active') return '<span class="badge ba">Activa</span>';
+  if(st==='prospect') return '<span class="badge bp">En proceso</span>';
+  return '<span class="badge bi">Inactiva</span>';
 }
 
-function selectState(idx) {
-  const s = statesData[idx];
-
-  // highlight
-  document.querySelectorAll('.state-item').forEach(el => el.classList.remove('selected'));
-  document.querySelectorAll(`[id^="sitem-${idx}"]`).forEach(el => el.classList.add('selected'));
-
-  // build stores list
-  const storeRows = storeNames.slice(0, s.stores > 10 ? 10 : s.stores).map((name, i) => {
-    const statuses = ['active','active','active','active','active','prospect','active','active','prospect','inactive'];
-    const badges = { active:'badge-active', prospect:'badge-prospect', inactive:'badge-inactive' };
-    const labels = { active:'Activa', prospect:'En proceso', inactive:'Inactiva' };
-    const st = statuses[i] || 'active';
-    const inv = (200 + i * 15).toFixed(0);
-    return `
-      <div class="store-row">
-        <div class="store-name">${name}</div>
-        <span class="badge ${badges[st]}">${labels[st]}</span>
-        <div class="visit-freq">${s.freq}</div>
-        <div class="inv-amt">$${inv}</div>
-      </div>`;
-  }).join('');
-
-  const panel = document.getElementById('detail-panel');
-  panel.innerHTML = `
-    <div class="detail-state-header">
-      <div class="detail-state-name">${s.name}</div>
-      <div class="detail-state-sub">${s.code} · Cobertura activa Q1 2025</div>
-    </div>
-    <div class="detail-kpis">
-      <div class="detail-kpi">
-        <div class="detail-kpi-label">Puntos de venta</div>
-        <div class="detail-kpi-val accent">${s.stores}</div>
-      </div>
-      <div class="detail-kpi">
-        <div class="detail-kpi-label">Inversión zona</div>
-        <div class="detail-kpi-val blue">$${s.inv.toLocaleString()}</div>
-      </div>
-      <div class="detail-kpi">
-        <div class="detail-kpi-label">Visitas/semana</div>
-        <div class="detail-kpi-val gold">${s.freq}</div>
-      </div>
-      <div class="detail-kpi">
-        <div class="detail-kpi-label">Pedidos levantados</div>
-        <div class="detail-kpi-val green">${s.orders}</div>
-      </div>
-    </div>
-    <div class="stores-section">
-      <div class="stores-head">
-        <span>Tienda</span><span>Estado</span><span>Visita</span><span>Inversión</span>
-      </div>
-      ${storeRows}
-    </div>
-  `;
+function detailHtml(s){
+  var rows='';
+  var n=Math.min(s.stores,SNAMES.length);
+  for(var i=0;i<n;i++){
+    rows+='<div class="strow"><div class="stn">'+SNAMES[i]+'</div>'+badgeHtml(SSTATUS[i])+'<div class="stf">'+s.visits+'</div><div class="sti">$'+(200+i*15)+'</div></div>';
+  }
+  return '<div class="dh"><div class="dh-name">'+s.name+'</div><div class="dh-tag">'+s.code+' · Cobertura activa Q1 2025</div></div>'
+    +'<div class="dmetrics">'
+    +'<div class="dm"><div class="dml">Puntos de venta</div><div class="dmv" style="color:var(--accent)">'+s.stores+'</div></div>'
+    +'<div class="dm"><div class="dml">Inversión zona</div><div class="dmv" style="color:var(--blue)">$'+s.inv.toLocaleString()+'</div></div>'
+    +'<div class="dm"><div class="dml">Visitas / semana</div><div class="dmv" style="color:var(--gold)">'+s.visits+'</div></div>'
+    +'<div class="dm"><div class="dml">Pedidos levantados</div><div class="dmv" style="color:var(--green)">'+s.orders+'</div></div>'
+    +'</div>'
+    +'<div class="sthead"><span>Tienda</span><span>Estado</span><span>Visita</span><span>Inversión</span></div>'+rows;
 }
 
-// ── BUILD INVESTMENT TABLE ──
-function buildInvTable() {
-  const max = Math.max(...statesData.map(s=>s.inv));
-  const table = document.getElementById('inv-table');
-  table.innerHTML = statesData
-    .sort((a,b)=>b.inv-a.inv)
-    .map(s => `
-      <div class="inv-row">
-        <div class="inv-state">${s.name}</div>
-        <div class="inv-bar-wrap">
-          <div class="inv-bar" style="width:${Math.round(s.inv/max*100)}%"></div>
-        </div>
-        <div class="inv-val">$${s.inv.toLocaleString()}</div>
-        <div class="inv-stores">${s.stores} tiendas</div>
-      </div>
-    `).join('');
+function buildList(cid,did){
+  var el=document.getElementById(cid);if(!el)return;
+  var h='';
+  for(var i=0;i<STATES.length;i++){
+    var s=STATES[i];
+    h+='<div class="srow" id="sr-'+cid+'-'+i+'" data-idx="'+i+'" data-cid="'+cid+'" data-did="'+did+'" onclick="selState(this)">'
+      +'<div class="srow-top"><span class="srow-name">'+s.name+'</span><span class="srow-cnt">'+s.stores+' tiendas</span></div>'
+      +'<div class="srow-inv">Inversión: $'+s.inv.toLocaleString()+' · '+s.visits+'</div>'
+      +'<div class="barbg"><div class="barfill" style="width:'+pct(s.stores,MS)+'%"></div></div>'
+      +'</div>';
+  }
+  el.innerHTML=h;
 }
 
-// ── BUILD ACTIVITY FEED ──
-function buildActivity() {
-  document.getElementById('activity-feed').innerHTML =
-    activityData.map(a => `
-      <div class="activity-item">
-        <div class="activity-dot" style="background:${a.color}"></div>
-        <div>
-          <div class="activity-text">${a.text}</div>
-          <div class="activity-time">${a.time}</div>
-        </div>
-      </div>
-    `).join('');
-
-  document.getElementById('orders-table').innerHTML = `
-    <div class="stores-head" style="grid-template-columns:1.2fr 1.5fr .8fr .8fr .8fr">
-      <span>Estado</span><span>Tienda</span><span>Cant</span><span>SKU</span><span>Monto</span>
-    </div>
-    ${ordersData.map(o => `
-      <div class="store-row" style="grid-template-columns:1.2fr 1.5fr .8fr .8fr .8fr">
-        <div>${o.state}</div>
-        <div class="store-name" style="font-size:12px">${o.store}</div>
-        <div class="visit-freq">${o.qty}</div>
-        <div class="visit-freq">${o.sku}</div>
-        <div class="inv-amt">${o.amt}</div>
-      </div>
-    `).join('')}
-  `;
+function selState(el){
+  var cid=el.getAttribute('data-cid');
+  var did=el.getAttribute('data-did');
+  var idx=parseInt(el.getAttribute('data-idx'));
+  var rows=document.querySelectorAll('[data-cid="'+cid+'"]');
+  for(var i=0;i<rows.length;i++) rows[i].classList.remove('sel');
+  el.classList.add('sel');
+  var dp=document.getElementById(did);
+  if(dp) dp.innerHTML=detailHtml(STATES[idx]);
 }
 
-// ── NAV ──
-const tabs = { overview:'RESUMEN GENERAL', states:'ESTADOS & COBERTURA', investment:'INVERSIÓN POR ZONA', activity:'ACTIVIDAD RECIENTE' };
-
-function switchTab(name) {
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('view-'+name).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(n=>{
-    if(n.getAttribute('onclick')?.includes(name)) n.classList.add('active');
-  });
-  document.getElementById('topbar-title').textContent = tabs[name];
+function buildInv(){
+  var el=document.getElementById('inv-tbl');if(!el)return;
+  var sorted=STATES.slice().sort(function(a,b){return b.inv-a.inv});
+  var h='';
+  for(var i=0;i<sorted.length;i++){
+    var s=sorted[i];
+    h+='<div class="irow"><div class="istate">'+s.name+'</div><div class="ibarbg"><div class="ibarfill" style="width:'+pct(s.inv,MI)+'%"></div></div><div class="idollar">$'+s.inv.toLocaleString()+'</div><div class="icnt">'+s.stores+' tiendas</div></div>';
+  }
+  el.innerHTML=h;
 }
 
-// ── MODAL ──
-function closeModal(e) {
-  if (!e || e.target === document.getElementById('modal-overlay'))
-    document.getElementById('modal-overlay').classList.remove('open');
+function buildActivity(){
+  var f=document.getElementById('act-feed');
+  if(f){var h='';for(var i=0;i<ACTIVITY.length;i++){var a=ACTIVITY[i];h+='<div class="aitem"><div class="adot" style="background:'+a.c+'"></div><div><div class="atxt">'+a.t+'</div><div class="atime">'+a.tm+'</div></div></div>';}f.innerHTML=h;}
+  var o=document.getElementById('orders-bd');
+  if(o){var h2='';for(var j=0;j<ORDERS.length;j++){var r=ORDERS[j];h2+='<div class="orow"><div class="ostate">'+r.state+'</div><div class="ostore">'+r.store+'</div><div class="oqty">'+r.qty+'</div><div class="osku">'+r.sku+'</div><div class="oamt">'+r.amt+'</div></div>';}o.innerHTML=h2;}
 }
 
-// ── INIT ──
-buildStateGrid(document.getElementById('states-grid'));
-buildStateGrid(document.getElementById('states-grid-2'));
-buildInvTable();
+var TITLES={overview:'RESUMEN GENERAL',states:'ESTADOS & COBERTURA',investment:'INVERSIÓN POR ZONA',activity:'ACTIVIDAD RECIENTE'};
+function goTo(name,btn){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active')});
+  var v=document.getElementById('v-'+name);if(v)v.classList.add('active');
+  document.querySelectorAll('.nbtn').forEach(function(b){b.classList.remove('active')});
+  if(btn)btn.classList.add('active');
+  var t=document.getElementById('ptitle');if(t)t.textContent=TITLES[name]||name.toUpperCase();
+}
+
+buildList('slist-ov','dp-ov');
+buildList('slist-st','dp-st');
+buildInv();
 buildActivity();
 </script>
 
